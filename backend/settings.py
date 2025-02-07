@@ -7,6 +7,9 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent  # Get project root directory
 dotenv_path = BASE_DIR / ".env"
 
+
+DEBUG = True
+
 if dotenv_path.exists():
     load_dotenv(dotenv_path)  # ✅ Explicitly load .env file
 else:
