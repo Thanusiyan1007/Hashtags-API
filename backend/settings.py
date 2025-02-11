@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
     raise ValueError("⚠️ SECRET_KEY is missing! Add it to your .env file.")
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["your-app.onrender.com", "localhost", "127.0.0.1"]
 
 # Installed apps
 INSTALLED_APPS = [
