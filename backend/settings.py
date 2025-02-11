@@ -32,7 +32,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security settings
 SECRET_KEY = os.getenv("SECRET_KEY", "your-django-secret-key")
 DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
+ALLOWED_HOSTS = ['.vercel.app']
 
 # Installed apps
 INSTALLED_APPS = [
