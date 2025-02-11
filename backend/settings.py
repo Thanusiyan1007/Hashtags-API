@@ -66,8 +66,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Hasthtag.urls'
-WSGI_APPLICATION = 'Hasthtag.wsgi.application'
+ROOT_URLCONF = 'backend.urls'  # Or the correct project name
+WSGI_APPLICATION = 'backend.wsgi.application'  # Or the correct project name
+
 
 
 # Templates
