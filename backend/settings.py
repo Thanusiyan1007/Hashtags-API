@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
-
+import dj_database_url
 # Load environment variables
 BASE_DIR = Path(__file__).resolve().parent.parent  # Get project root directory
 dotenv_path = BASE_DIR / ".env"
@@ -90,23 +90,29 @@ TEMPLATES = [
 
 
 
-import dj_database_url
+# Check if DATABASE_URL is set
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv("MYSQL_DATABASE"),
-        'USER': os.getenv("MYSQL_USER"),
-        'PASSWORD': os.getenv("MYSQL_PASSWORD"),
-        'HOST': os.getenv("MYSQL_HOST"),
-        'PORT': os.getenv("MYSQL_PORT", "3306"),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(default=DATABASE_URL)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.getenv("MYSQL_DATABASE"),
+            'USER': os.getenv("MYSQL_USER"),
+            'PASSWORD': os.getenv("MYSQL_PASSWORD"),
+            'HOST': os.getenv("MYSQL_HOST"),
+            'PORT': os.getenv("MYSQL_PORT", "3306"),
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            }
         }
     }
-}
+
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
