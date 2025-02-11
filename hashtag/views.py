@@ -26,7 +26,7 @@ class GenerateHashtagsView(APIView):
         return Response({"hashtags": hashtags}, status=status.HTTP_200_OK)
 
 class SaveHashtagView(APIView):
-    permission_classes = [permissions.AllowAny]  # No authentication required
+    permission_classes = [permissions.IsAuthenticated]  # No authentication required
 
     def post(self, request):
         hashtag_name = request.data.get("hashtag")
