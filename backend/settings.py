@@ -90,16 +90,16 @@ TEMPLATES = [
 
 
 
-import os
 import dj_database_url
+
+load_dotenv()  # Load environment variables from .env file
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgresql://hastag_user:X60rYFYkn7Cr9KlVJ2v7yvnxIAMYV6xB@dpg-culmodrtq21c73fm2l20-a/hastag",
+        default=os.getenv("DATABASE_URL"),
         conn_max_age=600
     )
 }
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

@@ -9,6 +9,6 @@ def home(request):
 urlpatterns = [
     path("", home),  # Add this route for "/"
     path("admin/", admin.site.urls),
-    path("api/users/", include("users.urls")),
-    path("api/hashtags/", include("hashtag.urls")),
+    path("api/users/", include("users.urls")),      # Users API
+    path("api/hashtags/", include("hashtag.urls")), # Hashtags API
 ]
