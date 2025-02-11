@@ -5,7 +5,7 @@ from django.http import JsonResponse
 
 
 urlpatterns = [
-    path("", admin.site.urls),
+    path("admin/", admin.site.urls),
     path("api/users/", include("users.urls")),      # Users API
     path("api/hashtags/", include("hashtag.urls")), # Hashtags API
 ]
