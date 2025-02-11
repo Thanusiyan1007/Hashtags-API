@@ -13,6 +13,6 @@ class Hashtag(models.Model):
         return f"{self.name} ({self.platform})"
 
 class UserHashtag(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     hashtag = models.ForeignKey(Hashtag, on_delete=models.CASCADE)
     saved_at = models.DateTimeField(auto_now_add=True)
