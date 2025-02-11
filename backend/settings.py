@@ -10,18 +10,14 @@ dotenv_path = BASE_DIR / ".env"
 
 DEBUG = True
 
-if dotenv_path.exists():
-    load_dotenv(dotenv_path)  # ✅ Explicitly load .env file
-else:
-    print("⚠️ WARNING: .env file not found!")
+from dotenv import load_dotenv
 
-SECRET_KEY = 'django-insecure-g9ms(-0^6v5(vea+#v@1*k7*(tr$pl@n@@iy4t=!71!zz_t5g*'
+load_dotenv()  # This automatically finds and loads .env
 
 
 
-# OpenAI API Key
+
 OPENAI_API_KEY = os.getenv("OPENAI_KEY")
-
 if not OPENAI_API_KEY:
     raise ValueError("⚠️ OpenAI API Key is missing! Add it to your .env file.")
 
@@ -29,11 +25,11 @@ if not OPENAI_API_KEY:
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Security settings
-SECRET_KEY = os.getenv("SECRET_KEY", "your-django-secret-key")
-DEBUG = True
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("⚠️ SECRET_KEY is missing! Add it to your .env file.")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Installed apps
 INSTALLED_APPS = [
@@ -70,7 +66,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'backend.urls'
+ROOT_URLCONF = 'Hasthtag.urls'
+WSGI_APPLICATION = 'Hasthtag.wsgi.application'
+
 
 # Templates
 TEMPLATES = [
@@ -89,7 +87,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
